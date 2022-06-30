@@ -5,17 +5,21 @@ import numpy
 video = cv2.VideoCapture(0)
 
 def light_detector(gray):
-    var1 = numpy.mean(gray[220][0:300])
-    var2 = numpy.mean(gray[0][0:300])
-    var3 = numpy.mean(gray[440][0:300])
-    var_1 = numpy.mean(gray[-220][-0:-300])
-    var_2 = numpy.mean(gray[-0][-0:-300])
-    var_3 = numpy.mean(gray[-440][-0:-300])
+    var1 = numpy.mean(gray[0][0:300])
+    var2 = numpy.mean(gray[110][0:300])
+    var3 = numpy.mean(gray[220][0:300])
+    var4 = numpy.mean(gray[330][0:300])
+    var5 = numpy.mean(gray[440][0:300])
+    var_1 = numpy.mean(gray[-0][-0:-300])
+    var_2 = numpy.mean(gray[-110][-0:-300])
+    var_3 = numpy.mean(gray[-220][-0:-300])
+    var_4 = numpy.mean(gray[-330][-0:-300])
+    var_5 = numpy.mean(gray[-440][-0:-300])
     global right_screen
     global left_screen
-    right_screen = var1 + var2 + var3 // 3
-    left_screen = var_1 + var_2 + var_3 // 3
-    return right_screen, left_screen
+    right_screen = var1 + var2 + var3 + var4 + var5
+    left_screen = var_1 + var_2 + var_3 + var_4 + var_5
+    return right_screen // 5, left_screen // 5
 
 def rotate_right():
     if right_screen > left_screen:
